@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+       <title>Cadastrar Passageiro</title>
+    </h:head>
+    <h:body>
+       
+        <p:growl id="gro2" life="4000"/>
+
+        <h:form id="formCadPassageiro">
+
+            <p:fieldset legend="Cadastro do Passageiro">
+                <p:panelGrid columns="2">
+                    
+                    
+                    <h:outputText value="Nome:"/>
+                    <p:inputText value="#{passageiroController.cadPassageiro.nome}" />
+                                
+                    <h:outputText value="CPF:"/>
+                    <p:inputMask value="#{passageiroController.cadPassageiro.cpf}" mask="999.999.999-99" />
+                    
+                    
+                    
+                    <h:outputText value="Email:"/>
+                    <p:inputText value="#{passageiroController.cadPassageiro.email}" />
+                     
+                    
+                    <h:outputText value="Telefone:"/>
+                    <p:inputText value="#{passageiroController.cadPassageiro.telefone}" />
+                     
+                    
+                    
+                    
+                    
+                    <p:layoutUnit position="center">
+                        Senhas e validacoes:
+                    </p:layoutUnit>
+                  
+                    <br/>
+                    
+                    
+                    <h:outputText value="Login:"/>
+                    <p:inputText value="#{passageiroController.cadPassageiro.login}"/>
+                    
+                    <h:outputText value="Senha:"/>
+                    <p:inputText value="#{passageiroController.cadPassageiro.senha}"/>
+
+                 </p:panelGrid>
+                <p:commandButton value ="Cadastrar" action="#{passageiroController.cadastrar()}"
+                                 oncomplete ="PF('widDialConfirmCadPassageiro').show()"/>
+
+            </p:fieldset>    
+
+            <p:dialog id="ConfirmCadPassageiro" visible="false" resizable="false"
+                      modal="true" widgetVar="widDialConfirmCadPassageiro" header="Atencao!">
+
+
+
+                
+
+                <h:outputText value="Deseja realmente cadastrar Passageiro?" /><br/>
+                <p:commandButton value="Sim" action="#{passageiroController.cadastrar()}"
+                                 update=":formCadPassageiro" oncomplete="PF('widDialConfirmCadPassageiro').hide();" />
+                <p:commandButton value="não" oncomplete="PF('widDialConfirmCadPassageiro').hide():widDialConfirmCadPassageiro"/>  
+                
+                <p:confirmDialog id ="dialConfirmCadPassageiro" message="Passageiro cadastrado com sucesso"
+                                 visible="false" widgetVar="widDialConfirmCadPassageiro1"/>
+                
+            </p:dialog>
+
+        </h:form>
+    </h:body>
+</html>
+

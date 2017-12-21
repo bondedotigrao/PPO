@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Leva Ali Logar</title>
+    </h:head>
+    <h:body>
+        <h:form id="menuPiloto">
+            <h:form id="formMenu">
+                <p:menubar>
+
+                    <p:menuitem value="LevaALI Home" url="index.xhtml"/>
+                    
+                    <p:submenu label="Piloto">
+                        <p:menuitem value="Cadastrar" url="cadPiloto.xhtml"/>
+                        <p:menuitem value="Logar" url="loginPiloto.xhtml"/>
+                    </p:submenu>  
+
+                    <p:submenu label="Passageiro">
+                        <p:menuitem value="Cadastrar" url="cadPassageiro.xhtml"/>
+                        <p:menuitem value="Logar" url="loginPassageiro.xhtml"/>
+                    </p:submenu>
+                </p:menubar>
+
+            </h:form>
+        </h:form>
+    </h:body>
+</html>
+
