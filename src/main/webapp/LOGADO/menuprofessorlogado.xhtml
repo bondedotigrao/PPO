@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>EzFitMenu</title>
+    </h:head>
+
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+
+    <h:body>
+
+        
+            <c:if test="${loginProfessorController.professorLogado==null}">
+            <script>location.href="indexlogar.xhtml";</script>
+            </c:if>
+        
+        
+        
+        
+        <h:form id="ezformMenu">
+            <h:form id="formMenu">
+                <p:menubar>
+                    <p:menuitem value="EzFit Home" url="indexlogar.xhtml"/>
+                    <p:submenu label="Professor">
+                        <p:menuitem value="Meu Perfil" url="apresentaprofessorlogado.xhtml"/>
+                        <p:menuitem value="Alterar" url="alteraprofessorlogado.xhtml"/>
+                    </p:submenu>    
+                    
+                    
+                    <p:submenu label="Exercicio">
+                        <p:menuitem value="Cadastrar" url="cadastraexercicio.xhtml"/>
+                        <p:menuitem value="Listar Exercicios" url="apresentaexerciciosprofessor.xhtml"/>
+                    </p:submenu>
+                    
+                    <p:submenu label="Treino">
+                        <p:menuitem value="Cadastrar" url="cadastratreino.xhtml"/>
+                        <p:menuitem value ="Listar Treinos"  url="apresentatreinosprofessor.xhtml"/>
+                    </p:submenu>
+                </p:menubar>
+            </h:form>
+        </h:form>
+      
+         
+       
+        
+    </h:body>
+</html>
+

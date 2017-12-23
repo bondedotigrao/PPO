@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+
+
+        <ui:include src="menupassageirologado.xhtml"/>
+          
+
+        
+        <p:growl id="gro" showDetail="true"/>
+        <h:form id="formApresentaPassageiro">
+            <p:dataTable id="tablePassageiro" var="item" value="#{passageiroController.recuperarTodos()}"
+                         paginator="false" rows="5" rowKey="#{item.id_passageiro}" selectionMode="single"
+                         selection="#{passageiroController.selectedPassageiro}">
+                
+                <f:facet name="header">
+                    Passageiro Cadastrado
+                </f:facet>
+
+                <p:column headerText="Nome" >
+                    #{item.nome}
+                </p:column>
+
+                <p:column headerText="E-mail">
+                    #{item.email}
+                </p:column>
+            </p:dataTable>
+
+            <p:commandButton value="visualizar" oncomplete="PF('widDialVisualizaPassageiro').show()"
+                             update="dialVisualizaPassageiro"/>
+
+            <p:commandButton value="Alterar" action="alterapassageirologado.xhtml"/>
+            
+            <p:commandButton value="Deletar" action="#{passageiroController.deletar()}"
+                             update="tablePassageiro :gro">
+            <p:confirm header="Atenção" message="Deseja realmente Apagar ?"  />
+            </p:commandButton>
+
+            
+            <p:dialog id="dialVisualizaPassageiro" visible="false" modal="true" header="Passageiro Cadastrado"
+                      resizable="false" widgetVar="widDialVisualizaPassageiro">
+                <p:panelGrid columns="2">
+                    
+                    <h:outputText value="ID"/>
+                    <h:outputText value="#{passageiroController.selectedPassageiro.id_passageiro}"/>
+                    
+                    <h:outputText value="Nome:"/>
+                    <h:outputText value="#{passageiroController.selectedPassageiro.nome}"/>
+                    
+                    <h:outputText value="CPF:"/>
+                    <h:outputText value="#{passageiroController.selectedPassageiro.cpf}"/>
+                    
+                    <h:outputText value="Email"/>
+                    <h:outputText value="#{passageiroController.selectedPassageiro.email}"/>
+                    
+                    <h:outputText value="Telefone"/>
+                    <h:outputText value="#{passageiroController.selectedPassageiro.telefone}"/>
+                    
+                    <h:outputText value="Login"/>
+                    <h:outputText value="#{passageiroController.selectedPassageiro.login}"/>
+                    
+                    <h:outputText value="Senha:"/>
+                    <h:outputText value="#{passageiroController.selectedPassageiro.senha}"/>
+                    
+                </p:panelGrid>
+            </p:dialog>
+            
+            <p:confirmDialog  id="dialConfirm" global="true" widgetVar="widDialConfirma" >
+                <p:commandButton value="Sim" styleClass="ui-confirmdialog-yes" type="button" icon="ui-icon-check"/>
+                <p:commandButton value="Não" styleClass="ui-confirmdialog-no" type="button" icon="ui-icon-close"/>
+            </p:confirmDialog>
+            
+        </h:form>
+    </h:body>
+</html>
+

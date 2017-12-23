@@ -14,7 +14,7 @@ public class MotoController {
     private Moto cadMoto;
     private Moto selectedMoto;
 
-    private MotoController() {
+    public MotoController() {
         this.motoHibernate = new MotoHibernate();
         this.cadMoto = new Moto();
     }

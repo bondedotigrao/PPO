@@ -23,14 +23,14 @@ public class LoginControllerPiloto {
     }
 
     public String realizarLoginPiloto(String login, String senha) {
-        String envia=  "index.xhtml";
+        String envia=  "menupilotologado.xhtml";
         List<Piloto> piloto = new PilotoController().recuperarTodos();
 
         for (Piloto p : piloto) {
             if (p.getCpf().equals(login)) {
                 if (p.getSenha().equals(senha)) {
                     this.setPilotoLogado(p);
-                    envia = "menuPiloto.xhtml";
+                    envia = "menupilotologado.xhtml";
                 }
                 break;
 

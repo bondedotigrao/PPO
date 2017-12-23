@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+import java.util.Objects;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -24,35 +26,37 @@ public class CorridaController {
     }
     
     public String cadastrar(){
+    
         this.corridaHibernate.cadastrar(this.cadCorrida);
-        
-        this.cadCorrida = new Corrida();
         
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Corrida cadastrada com sucesso!"));
         
-        return "index.xhtml";
+        this.cadCorrida = new Corrida();
+        
+        return "apresentacorridaspassageiro.xhtml";
         
     }
     
     public String alterar(){
         this.corridaHibernate.alterar(this.selectedCorrida);
         
-        this.cadCorrida = new Corrida();
         
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Corrida alterada com sucesso!"));
         
-        return "index.xhtml";
+        this.selectedCorrida = new Corrida();
+        
+        return "apresentacorridaspassageiro.xhtml";
         
     }
     
-    public String deletar(){
+    public void deletar(){
+    
+        
         this.corridaHibernate.deletar(this.selectedCorrida);
         
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Corrida deletada com sucesso!"));
         this.cadCorrida = new Corrida();
         
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Corrida deletada com sucesso!"));
-        
-        return "index.xhtml";
         
     }
     
@@ -68,14 +72,13 @@ public class CorridaController {
         
     }
     
-    public String recuperaTodos(){
-        this.corridaHibernate.recuperarTodos();
+    public List<Corrida> recuperaTodos(){
         
-        this.cadCorrida = new Corrida();
         
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Corrida cadastrada com sucesso!"));
+        return this.corridaHibernate.recuperarTodos();
         
-        return "index.xhtml";
+        
+        
         
     }
 
@@ -102,6 +105,45 @@ public class CorridaController {
     public void setSelectedCorrida(Corrida selectedCorrida) {
         this.selectedCorrida = selectedCorrida;
     }
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 47 * hash + Objects.hashCode(this.corridaHibernate);
+        hash = 47 * hash + Objects.hashCode(this.cadCorrida);
+        hash = 47 * hash + Objects.hashCode(this.selectedCorrida);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final CorridaController other = (CorridaController) obj;
+        if (!Objects.equals(this.corridaHibernate, other.corridaHibernate)) {
+            return false;
+        }
+        if (!Objects.equals(this.cadCorrida, other.cadCorrida)) {
+            return false;
+        }
+        if (!Objects.equals(this.selectedCorrida, other.selectedCorrida)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "CorridaController{" + "corridaHibernate=" + corridaHibernate + ", cadCorrida=" + cadCorrida + ", selectedCorrida=" + selectedCorrida + '}';
+    }
+
+ 
     
 }

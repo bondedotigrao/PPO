@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>LevaAliMenu</title>
+    </h:head>
+   
+    <h:body>
+        <h:form id="levaliformMenu">
+            <h:form id="formMenu">
+                <p:menubar>
+                    <p:menuitem value="LevAli Home" url="indexlogar.xhtml"/>
+                    
+                    <p:submenu label="Passageiro">
+                        <p:menuitem value="Cadastrar" url="cadastrapassageiro.xhtml"/>
+                        <p:menuitem value="Logar" url="loginpassageiro.xhtml"/>
+                    </p:submenu>
+                    
+                    <p:submenu label="Piloto">
+                        <p:menuitem value="Cadastrar" url="cadastrapiloto.xhtml"/>
+                        <p:menuitem value="Logar" url="loginpiloto.xhtml"/>
+                    </p:submenu>  
+
+                    
+                </p:menubar>
+            </h:form>
+        </h:form>
+        
+    </h:body>
+</html>
+
+<!--        <p:graphicImage   url="https://x93fitness.com/wp-content/uploads/2013/10/banner21.png"
+                         />-->

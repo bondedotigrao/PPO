@@ -38,11 +38,11 @@ public class PassageiroController {
     public String alterar(){
         this.passageiroHibernate.alterar(this.selectedPassageiro);
         
-        this.cadPassageiro = new Passageiro();
         
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Passageiro alterado com sucesso!"));
+        this.cadPassageiro = new Passageiro();
         
-        return "loginPassageiro.xhtml";
+        return "apresentapassageirologado.xhtml";
         
     }
     

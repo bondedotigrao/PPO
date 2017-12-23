@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+    
+        
+        
+        <ui:include src="menupilotologado.xhtml"/>
+        
+        
+        
+        
+        <p:growl id="gro" showDetail="true"/>
+        <h:form id="formApresentaPiloto">
+            <p:dataTable id="tablePiloto" var="item" value="#{pilotoController.recuperarTodos()}"
+                         paginator="false" rows="5" rowKey="#{item.id_piloto}" selectionMode="single"
+                         selection="#{pilotoController.selectedPiloto}">
+                
+                
+                <f:facet name="header">
+                    Piloto Logado
+                </f:facet>
+                
+                <p:column headerText="Nome"  >
+                    #{item.nome}
+                </p:column>
+                
+                <p:column headerText="CNH">
+                    #{item.cnh}
+                </p:column>
+                <p:column headerText="CPF">
+                    #{item.cpf}
+                </p:column>
+            </p:dataTable>
+            <p:commandButton value="Visualizar Detalhes" oncomplete="PF('widDialVisualizaPiloto').show()"
+                             update="dialVisualizaPiloto"/>
+          
+            
+            <p:dialog id="dialVisualizaPiloto" visible="false" modal="true" header="Piloto Cadastrado"
+                      resizable="false" widgetVar="widDialVisualizaPiloto">
+                <p:panelGrid columns="2">
+                    
+                    <h:outputText value="ID"/>
+                    <h:outputText value="#{pilotoController.selectedPiloto.id_piloto}"/>
+                    
+                    <h:outputText value="Nome:"/>
+                    <h:outputText value="#{pilotoController.selectedPiloto.nome}"/>
+                    
+                    <h:outputText value="CPF:"/>
+                    <h:outputText value="#{pilotoController.selectedPiloto.cpf}"/>
+                    
+                    <h:outputText value="CNH"/>
+                    <h:outputText value="#{pilotoController.selectedPiloto.cnh}"/>
+                    
+                    <h:outputText value="Data de Nascimento:"/>
+                    <h:outputText value="#{pilotoController.selectedPiloto.dataNasc}"/>
+                    
+                    <h:outputText value="Endereço:"/>
+                    <h:outputText value="#{pilotoController.selectedPiloto.endereco}"/>
+                    
+                    <h:outputText value="Sexo"/>
+                    <h:outputText value="#{pilotoController.selectedPiloto.sexo}"/>
+                    <h:outputText value="e-mail:"/>
+                    <h:outputText value="#{pilotoController.selectedPiloto.email}"/>
+
+                    <h:outputText value="Login"/>
+                    <h:outputText value="#{pilotoController.selectedPiloto.login}"/>
+                    
+                    <h:outputText value="Senha"/>
+                    <h:outputText value="#{pilotoController.selectedPiloto.senha}"/>
+                    
+
+                </p:panelGrid>
+            </p:dialog>
+            
+            <p:confirmDialog  id="dialConfirm" global="true" widgetVar="widDialConfirma" >
+                <p:commandButton value="Sim" styleClass="ui-confirmdialog-yes" type="button" icon="ui-icon-check"/>
+                <p:commandButton value="Não" styleClass="ui-confirmdialog-no" type="button" icon="ui-icon-close"/>
+            </p:confirmDialog>
+            
+        </h:form>
+    </h:body>
+</html>
+

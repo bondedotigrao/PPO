@@ -24,24 +24,20 @@ public class Piloto {
         @Column
 	private String cpf;
         @Column
+	private String cnh;
+        @Column
 	private String endereco;
         @Column
 	private Date dataNasc;
         @Column
-        private String status;
-        @Column
         private String sexo;
-        
         @Column 
         private String email;
-        
          @Column 
         private String telefone;
-        
         @OneToOne
         @JoinColumn(name ="cod_moto",referencedColumnName ="id_moto")
         private Moto moto;
-        
         @Column
         private String senha;
         @Column
@@ -51,13 +47,12 @@ public class Piloto {
             
         }
 
-    public Piloto( String nome, String cpf, String endereco, Date dataNasc, String status, String sexo, String email, String telefone, Moto moto, String senha, String login) {
-        
+    public Piloto(String nome, String cpf, String cnh, String endereco, Date dataNasc, String sexo, String email, String telefone, Moto moto, String senha, String login) {
         this.nome = nome;
         this.cpf = cpf;
+        this.cnh = cnh;
         this.endereco = endereco;
         this.dataNasc = dataNasc;
-        this.status = status;
         this.sexo = sexo;
         this.email = email;
         this.telefone = telefone;
@@ -90,6 +85,14 @@ public class Piloto {
         this.cpf = cpf;
     }
 
+    public String getCnh() {
+        return cnh;
+    }
+
+    public void setCnh(String cnh) {
+        this.cnh = cnh;
+    }
+
     public String getEndereco() {
         return endereco;
     }
@@ -104,14 +107,6 @@ public class Piloto {
 
     public void setDataNasc(Date dataNasc) {
         this.dataNasc = dataNasc;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getSexo() {
@@ -165,18 +160,18 @@ public class Piloto {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + this.id_piloto;
-        hash = 97 * hash + Objects.hashCode(this.nome);
-        hash = 97 * hash + Objects.hashCode(this.cpf);
-        hash = 97 * hash + Objects.hashCode(this.endereco);
-        hash = 97 * hash + Objects.hashCode(this.dataNasc);
-        hash = 97 * hash + Objects.hashCode(this.status);
-        hash = 97 * hash + Objects.hashCode(this.sexo);
-        hash = 97 * hash + Objects.hashCode(this.email);
-        hash = 97 * hash + Objects.hashCode(this.telefone);
-        hash = 97 * hash + Objects.hashCode(this.moto);
-        hash = 97 * hash + Objects.hashCode(this.senha);
-        hash = 97 * hash + Objects.hashCode(this.login);
+        hash = 53 * hash + this.id_piloto;
+        hash = 53 * hash + Objects.hashCode(this.nome);
+        hash = 53 * hash + Objects.hashCode(this.cpf);
+        hash = 53 * hash + Objects.hashCode(this.cnh);
+        hash = 53 * hash + Objects.hashCode(this.endereco);
+        hash = 53 * hash + Objects.hashCode(this.dataNasc);
+        hash = 53 * hash + Objects.hashCode(this.sexo);
+        hash = 53 * hash + Objects.hashCode(this.email);
+        hash = 53 * hash + Objects.hashCode(this.telefone);
+        hash = 53 * hash + Objects.hashCode(this.moto);
+        hash = 53 * hash + Objects.hashCode(this.senha);
+        hash = 53 * hash + Objects.hashCode(this.login);
         return hash;
     }
 
@@ -201,10 +196,10 @@ public class Piloto {
         if (!Objects.equals(this.cpf, other.cpf)) {
             return false;
         }
-        if (!Objects.equals(this.endereco, other.endereco)) {
+        if (!Objects.equals(this.cnh, other.cnh)) {
             return false;
         }
-        if (!Objects.equals(this.status, other.status)) {
+        if (!Objects.equals(this.endereco, other.endereco)) {
             return false;
         }
         if (!Objects.equals(this.sexo, other.sexo)) {
@@ -233,12 +228,9 @@ public class Piloto {
 
     @Override
     public String toString() {
-        return "Piloto{" + "id_piloto=" + id_piloto + ", nome=" + nome + ", cpf=" + cpf + ", endereco=" + endereco + ", dataNasc=" + dataNasc + ", status=" + status + ", sexo=" + sexo + ", email=" + email + ", telefone=" + telefone + ", moto=" + moto + ", senha=" + senha + ", login=" + login + '}';
+        return "Piloto{" + "id_piloto=" + id_piloto + ", nome=" + nome + ", cpf=" + cpf + ", cnh=" + cnh + ", endereco=" + endereco + ", dataNasc=" + dataNasc + ", sexo=" + sexo + ", email=" + email + ", telefone=" + telefone + ", moto=" + moto + ", senha=" + senha + ", login=" + login + '}';
     }
 
-        
-        
-        
         
         
 }

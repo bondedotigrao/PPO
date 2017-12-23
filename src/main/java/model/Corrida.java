@@ -13,7 +13,7 @@ import javax.persistence.OneToOne;
 public class  Corrida {
 
 @Id
-@GeneratedValue
+@GeneratedValue(strategy = GenerationType.IDENTITY)
 private int id;
 @OneToOne
 @JoinColumn(name = "cod_passageiro", referencedColumnName = "id_passageiro")
@@ -21,9 +21,6 @@ private Passageiro passageiro;
 @OneToOne
 @JoinColumn(name = "cod_piloto",referencedColumnName = "id_piloto")
 private Piloto piloto;
-
-
-
 @Column
 private String origem;
 @Column
@@ -34,8 +31,8 @@ public Corrida(){
     
 }
 
-    public Corrida(int id, Passageiro passageiro, Piloto piloto, String origem, String destino) {
-        this.id = id;
+    public Corrida( Passageiro passageiro, Piloto piloto, String origem, String destino) {
+        
         this.passageiro = passageiro;
         this.piloto = piloto;
         this.origem = origem;

@@ -5,6 +5,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import model.Implementacoes.PilotoHibernate;
+import model.Moto;
 import model.Piloto;
 
 @ManagedBean
@@ -19,14 +20,14 @@ public class PilotoController {
         this.cadPiloto = new Piloto();
     }
     
-    public String cadastrar(){
+    public String cadastrar(Moto moto){
         this.pilotoHibernate.cadastrar(this.cadPiloto);
-        
+        this.cadPiloto.setMoto(moto);
         this.cadPiloto = new Piloto();
         
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Piloto cadastrado com sucesso!"));
         
-        return "index.xhtml";
+        return "indexlogar.xhtml";
         
     }
     

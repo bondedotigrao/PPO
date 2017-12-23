@@ -27,11 +27,11 @@ public class LoginControllerPassageiro {
         List<Passageiro> passageiro = new PassageiroController().recuperarTodos();
 
         for (Passageiro ps : passageiro) {
-            if (ps.getLogin().equals(login)) {
+            if (ps.getCpf().equals(login)) {
                 if (ps.getSenha().equals(senha)) {
                     this.setPassageiroLogado(ps);
                      FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("passageiroLogado", this.passageiroLogado);
-                    return "menuPassageiro.xhtml";
+                    return "menupassageirologado.xhtml";
                 }
                 break;
 
@@ -45,7 +45,7 @@ public class LoginControllerPassageiro {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         this.passageiroLogado = null;
         
-        return "index.xhtml";
+        return "indexlogar.xhtml";
     }
 
 }

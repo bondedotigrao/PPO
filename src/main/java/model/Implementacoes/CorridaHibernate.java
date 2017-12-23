@@ -100,9 +100,10 @@ public class CorridaHibernate  implements CorridaInterface{
     Session session = this.sessions.openSession();
       List<Corrida> lista = new ArrayList();      
       try{
-          lista = session.createQuery("from corida").list();
+          lista = session.createQuery("From Corrida").list();
       }catch(Exception listaTodasCorridasErro){
-          System.out.println("Algo de errado não esta certo ao listar corrida");
+          System.out.println(listaTodasCorridasErro.getCause() + "\n"+
+                  "Algo de errado não esta certo ao listar corrida");
       }finally{
           session.close();
       }

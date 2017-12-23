@@ -20,7 +20,7 @@ public class NewClass {
     
     public static void main(String args[]){
        
-      Corrida c = new Corrida(0, null, null, "origem", "destino");
+      Corrida c = new Corrida( null, null, "origem", "destino");
         CorridaHibernate.getInstance().cadastrar(c);
     
     }

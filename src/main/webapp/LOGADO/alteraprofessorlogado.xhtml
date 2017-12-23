@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+      
+        
+        <ui:include src="menuprofessorlogado.xhtml"/>
+        
+            <c:if test="${loginProfessorController.professorLogado==null}">
+            <script>location.href="indexlogar.xhtml";</script>
+            </c:if>
+        
+        
+        
+        <h:form>
+            <p:fieldset legend="Alterar Professor">
+                <p:panelGrid columns="2">
+                    <h:outputText value="Código"/>
+                    <h:outputText value="#{loginProfessorController.professorLogado.codigo}"/>
+                    
+                    <h:outputText value="Nome"/>
+                    <p:inputText value="#{loginProfessorController.professorLogado.nome}"/>
+                    
+                    <h:outputText value="CPF"/>
+                    <p:inputMask value="#{loginProfessorController.professorLogado.cpf}"
+                                 mask="999.999.999-99"/>
+                    
+                    <h:outputText value="CREF"/>
+                    <p:inputMask value="#{loginProfessorController.professorLogado.cref}"
+                                 mask="999999-a/aa"/>
+                    
+                    <h:outputText value="Endereço"/>
+                    <p:inputText value="#{loginProfessorController.professorLogado.endereco}"/>
+                    
+                    <h:outputText value="Data de Nascimento"/>
+                    <p:inputMask value="#{loginProfessorController.professorLogado.dataNascimento}"
+                                 mask="99/99/9999"/>
+                    
+                    <h:outputLabel value="Sexo: *" for="sexo"/>
+                    <p:selectOneMenu id="txtSexo" value="#{loginProfessorController.professorLogado.sexo}" required="true">
+                    <f:selectItem itemLabel="Escolha"/>
+                    <f:selectItem itemValue="Masculino" itemLabel="Masculino"/>
+                    <f:selectItem itemValue="Feminino" itemLabel="Feminino"/>
+                    </p:selectOneMenu>
+                   
+                    <h:outputText value="e-mail"/>
+                    <p:inputText value="#{loginProfessorController.professorLogado.email}"/>
+          
+                    <h:outputText value="Senha"/>
+                    <p:inputText value="#{loginProfessorController.professorLogado.senha}"/>
+                
+                </p:panelGrid>
+                <p:commandButton value="Alterar" action="#{professorController.alterar}"/>
+                
+            </p:fieldset>
+        </h:form>
+    </h:body>
+</html>
