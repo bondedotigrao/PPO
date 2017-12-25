@@ -15,7 +15,11 @@
 
     <h:body>
 
-
+        
+        <c:if test="${loginControllerPassageiro.passageiroLogado==null}">
+            <script>location.href="indexlogar.xhtml";</script>
+        </c:if>
+        
          
 
 
@@ -28,6 +32,7 @@
                     <p:submenu label="Passageiro">
                         <p:menuitem value="Meu Perfil" url="apresentapassageirologado.xhtml"/>
                         <p:menuitem value="Alterar" url="alterapassageirologado.xhtml"/>
+                          <p:menuitem value="Logout" url="indexlogar.xhtml"/>
                     </p:submenu>
                     
                     <p:submenu label="Minhas Corridas">

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import model.Corrida;
 import model.Passageiro;
+import model.Piloto;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -109,6 +110,67 @@ public class CorridaHibernate  implements CorridaInterface{
       }
       
       return lista;
-    }   
-    }
+    } 
+    
+    
+    
+    @Override
+    public List<Corrida> recuperarPorPiloto(Piloto piloto) {
+    Session session = this.sessions.openSession();
+      List<Corrida> lista = new ArrayList();      
+      try{
+          lista = session.createQuery("From Corrida Where cod_piloto=" + piloto.getId_piloto()).list();
+      }catch(Exception listaTodasCorridasErro){
+          System.out.println(listaTodasCorridasErro.getCause() + "\n"+
+                  "Algo de errado não esta certo ao listar corrida");
+      }finally{
+          session.close();
+      }
+      
+      return lista;
+    } 
+    
+    
+    @Override
+    public List<Corrida> recuperarPorPassageiro(Passageiro passageiro) {
+    Session session = this.sessions.openSession();
+      List<Corrida> lista = new ArrayList();      
+      try{
+          lista = session.createQuery("From Corrida Where cod_passageiro=" + passageiro.getId_passageiro()).list();
+      }catch(Exception listaTodasCorridasErro){
+          System.out.println(listaTodasCorridasErro.getCause() + "\n"+
+                  "Algo de errado não esta certo ao listar corridas por passageiro");
+      }finally{
+          session.close();
+      }
+      
+      return lista;
+    } 
+    
+
+    @Override
+    public List<Corrida> recuperarDisponiveis(Corrida corrida) {
+    Session session = this.sessions.openSession();
+      List<Corrida> lista = new ArrayList();      
+      try{
+   
+          
+          lista = session.createQuery("From Corrida Where cod_piloto = null").list();
+          
+      }catch(Exception listaTodasCorridasErro){
+          System.out.println(listaTodasCorridasErro.getCause() + "\n"+
+                  "Algo de errado não esta certo ao listar corridas Disponiveis");
+      }finally{
+          session.close();
+      }
+      
+      return lista;
+    } 
+
+
+
+
+
+
+}
     

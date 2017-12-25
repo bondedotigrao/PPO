@@ -18,14 +18,14 @@
           <p:fieldset legend="Cadastro do Piloto">
 
           <h:form>
-            <p:dialog id="dialMoto" visible="true" resizable="false" modal="false"
+            <p:dialog id="dialMoto" visible="true" resizable="false" modal="true"
                       widgetVar="widDialMoto" header="Cadastro da Moto">
                 <p:tab>
                     <p:panelGrid columns="3" columnClasses="label, values">
                         
                         
                         <h:outputText value="Placa *"/>
-                        <p:inputText id="txtPlaca" value="#{motoController.cadMoto.placa}" required="true"
+                        <p:inputMask id="txtPlaca" value="#{motoController.cadMoto.placa}" mask="aaa-9999" required="true"
                                      requiredMessage="Informe a placa da Moto"/>
                         <p:messages for="txtPlaca"/>
 
@@ -48,10 +48,11 @@
             </p:dialog>
         </h:form>
         <h:form>
-               <p:dialog id="dialLocal" visible="false" resizable="false" modal="false"
+               
+            <p:dialog id="dialLocal" visible="false" resizable="false" modal="true"
                          widgetVar="widDialLocal" header="Cadastro do Piloto">
                 <p:tab>
-                    <p:panelGrid columns="2" >
+                    <p:panelGrid columns="3" >
                     
                     <h:outputText value="Nome*:"/>
                     <p:inputText id="txtNome" value="#{pilotoController.cadPiloto.nome}" required="true"
@@ -60,7 +61,7 @@
 
 
                     <h:outputText value="CNH*:"/>
-                    <p:inputText id="txtCnh" value="#{pilotoController.cadPiloto.cnh}"  required="true"
+                    <p:inputMask id="txtCnh" value="#{pilotoController.cadPiloto.cnh}" mask="999999999" required="true"
                                  requiredMessage="Está faltando o CNH"/>
                     <p:message for='txtCnh' />
                     
@@ -99,7 +100,6 @@
                     </p:selectOneMenu>
                     <p:message for="txtSexo"/>
 
-
                     <p:layoutUnit position="center">
                         Senhas e validacoes:
                     </p:layoutUnit>
@@ -115,7 +115,7 @@
                     <p:message for='txtEnd' />     
 
                     </p:panelGrid>
-                    <p:commandButton value="Next" action="#{pilotoController.cadastrar()}"
+                    <p:commandButton value="Cadastrar Piloto" action="#{pilotoController.cadastrar(motoController.cadMoto)}"
                                      oncomplete="PF('widDialPiloto').show()" onclick="PF('widDialLocal').hide()"/>
                 </p:tab> 
             </p:dialog>

@@ -13,7 +13,7 @@ import model.Piloto;
 public class PilotoController {
     private PilotoHibernate pilotoHibernate;
     private Piloto cadPiloto;
-    private Piloto selectedPiloto;
+    private Piloto selectedPiloto = (Piloto) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("pilotoLogado");
 
     public PilotoController() {
         this.pilotoHibernate = new PilotoHibernate();
@@ -39,7 +39,7 @@ public class PilotoController {
         
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Piloto alterado com sucesso!"));
         
-        return "index.xhtml";
+        return "apresentapilotologado.xhtml";
         
     }
     

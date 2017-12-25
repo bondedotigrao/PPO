@@ -9,7 +9,7 @@
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>EzFit Home Passageiro</title>
+                <title>LevAli Home Passageiro</title>
             </f:facet>
         </h:head>
 
@@ -27,7 +27,7 @@
 		<p:password id="txtSenha" binding="#{senha}" required="true"
 					maxlength="20" requiredMessage="A senha precisa ser preenchido!" />
                                 <br/>
-                                <p:commandButton value="logar" action="#{loginControllerPassageiro.realizarLoginPassageiro(login.value, senha.value)}" />
+                                <p:commandButton value="logar" action="#{loginControllerPassageiro.realizarLogin(login.value, senha.value)}" />
              </h:form>
             </p:dialog>
            

@@ -11,41 +11,39 @@ import model.Passageiro;
 
 public class LoginControllerPassageiro {
     private Passageiro passageiroLogado = null;
-    
+
     public LoginControllerPassageiro() {
+    }
+    
+    public String realizarLogin(String login,String senha){
+        List<Passageiro> pass = new PassageiroController().recuperarTodos();
+        
+        for(Passageiro p : pass){
+            if(p.getCpf().equals(login)){
+                if(p.getSenha().equals(senha)){
+                    this.passageiroLogado = p;
+                    FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("passageiroLogado", p);
+                   return"menupassageirologado.xhtml";
+                }
+            }
+        }
+        return "";
+    }
+    
+    public String logout(){
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        
+        this.passageiroLogado = null;
+        
+        return "index.xhtml";
     }
 
     public Passageiro getPassageiroLogado() {
-        return (Passageiro) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("pilotoLogado");
+        return passageiroLogado;
     }
 
     public void setPassageiroLogado(Passageiro passageiroLogado) {
-        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("passageiroLogado", this.passageiroLogado);
+        this.passageiroLogado = passageiroLogado;
     }
-
-    public String realizarLoginPassageiro(String login, String senha) {
-        List<Passageiro> passageiro = new PassageiroController().recuperarTodos();
-
-        for (Passageiro ps : passageiro) {
-            if (ps.getCpf().equals(login)) {
-                if (ps.getSenha().equals(senha)) {
-                    this.setPassageiroLogado(ps);
-                     FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("passageiroLogado", this.passageiroLogado);
-                    return "menupassageirologado.xhtml";
-                }
-                break;
-
-            }
-        }
-
-        return "void";
-    }
-
-    public String logout(){
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        this.passageiroLogado = null;
-        
-        return "indexlogar.xhtml";
-    }
-
+    
 }

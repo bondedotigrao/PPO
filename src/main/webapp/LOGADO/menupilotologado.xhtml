@@ -15,6 +15,10 @@
 
     <h:body>
 
+        
+        <c:if test="${loginControllerPiloto.pilotoLogado==null}">
+            <script>location.href="indexlogar.xhtml";</script>
+        </c:if>
 
          
 
@@ -28,6 +32,7 @@
                     <p:submenu label="Piloto">
                         <p:menuitem value="Meu Perfil" url="apresentapilotologado.xhtml"/>
                         <p:menuitem value="Alterar" url="alterapilotologado.xhtml"/>
+                         <p:menuitem value="Logout" url="indexlogar.xhtml"/>
                     </p:submenu>
                     
                     <p:submenu label="Corridas Disponiveis">

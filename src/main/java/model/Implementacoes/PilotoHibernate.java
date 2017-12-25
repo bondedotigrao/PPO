@@ -8,6 +8,7 @@ package model.Implementacoes;
 import model.interfaces.PilotoInterface;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import model.Piloto;
 import org.hibernate.Session;
@@ -21,6 +22,7 @@ import org.hibernate.cfg.Configuration;
  */
 public class PilotoHibernate implements PilotoInterface {
     
+  
     private EntityManager em;
     private SessionFactory sessions;
     private static PilotoHibernate instance =null;
@@ -107,7 +109,7 @@ public class PilotoHibernate implements PilotoInterface {
         Session session = this.sessions.openSession();
       List<Piloto> lista = new ArrayList();      
       try{
-          lista = session.createQuery("from piloto").list();
+          lista = session.createQuery("from Piloto").list();
       }catch(Exception listaTodosPilotosErro){
           System.out.println("Algo de errado não esta certo ao listar pilotos");
       }finally{

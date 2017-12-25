@@ -12,6 +12,11 @@
 
         <ui:include src="menupassageirologado.xhtml"/>
         
+        <c:if test="${loginControllerPassageiro.passageiroLogado==null}">
+            <script>location.href="indexlogar.xhtml";</script>
+        </c:if>
+        
+        
         <h:form>
             <p:fieldset legend="Alterar Corrida">
                 <p:panelGrid columns="2">

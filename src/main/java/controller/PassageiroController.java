@@ -17,7 +17,7 @@ import model.Passageiro;
 public class PassageiroController {
     private PassageiroHibernate passageiroHibernate;
     private Passageiro cadPassageiro;
-    private Passageiro selectedPassageiro;
+    private Passageiro selectedPassageiro = (Passageiro) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("passageiroLogado");
 
     public PassageiroController() {
         this.passageiroHibernate = new PassageiroHibernate();

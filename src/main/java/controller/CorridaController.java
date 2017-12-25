@@ -8,6 +8,8 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import model.Implementacoes.CorridaHibernate;
 import model.Corrida;
+import model.Passageiro;
+import model.Piloto;
 
 /**
  *
@@ -16,6 +18,7 @@ import model.Corrida;
 @ManagedBean
 @SessionScoped
 public class CorridaController {
+
     private CorridaHibernate corridaHibernate;
     private Corrida cadCorrida;
     private Corrida selectedCorrida;
@@ -24,64 +27,100 @@ public class CorridaController {
         this.corridaHibernate = new CorridaHibernate();
         this.cadCorrida = new Corrida();
     }
-    
-    public String cadastrar(){
-    
+
+    public String cadastrar() {
+        Passageiro p = (Passageiro) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get(("passageiroLogado"));
+        this.cadCorrida.setPassageiro(p);
         this.corridaHibernate.cadastrar(this.cadCorrida);
-        
+
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Corrida cadastrada com sucesso!"));
-        
+
         this.cadCorrida = new Corrida();
-        
+
         return "apresentacorridaspassageiro.xhtml";
-        
+
     }
-    
-    public String alterar(){
+
+    public String alterar() {
         this.corridaHibernate.alterar(this.selectedCorrida);
-        
-        
+
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Corrida alterada com sucesso!"));
-        
+
         this.selectedCorrida = new Corrida();
-        
+
         return "apresentacorridaspassageiro.xhtml";
-        
+
     }
-    
-    public void deletar(){
-    
+
+
+
+
+    public void adicionaPiloto(Piloto piloto) {
         
-        this.corridaHibernate.deletar(this.selectedCorrida);
-        
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Corrida deletada com sucesso!"));
-        this.cadCorrida = new Corrida();
-        
-        
-    }
-    
-    
-    public String retornar(){
-        this.corridaHibernate.recuperar(this.selectedCorrida.getId());
-        
-        this.cadCorrida = new Corrida();
-        
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Corrida retornada com sucesso!"));
-        
-        return "index.xhtml";
-        
-    }
-    
-    public List<Corrida> recuperaTodos(){
-        
-        
-        return this.corridaHibernate.recuperarTodos();
-        
-        
-        
+        this.selectedCorrida.setPiloto(piloto);
+        this.alterar();
+
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Corrida alterada com sucesso!"));
+
+        this.selectedCorrida = new Corrida();
+
         
     }
 
+
+
+
+
+
+    public void deletar() {
+
+        this.corridaHibernate.deletar(this.selectedCorrida);
+
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Corrida deletada com sucesso!"));
+        this.cadCorrida = new Corrida();
+
+    }
+
+    public String retornar() {
+        this.corridaHibernate.recuperar(this.selectedCorrida.getId());
+
+        this.cadCorrida = new Corrida();
+
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Corrida retornada com sucesso!"));
+
+        return "index.xhtml";
+
+    }
+
+    public List<Corrida> recuperaTodos() {
+
+        return this.corridaHibernate.recuperarTodos();
+
+    }
+
+    public List<Corrida> recuperarPorPiloto(Piloto piloto){
+        return this.corridaHibernate.recuperarPorPiloto(piloto);
+    }
+            
+    public List<Corrida> recuperarPorPassageiro(Passageiro passageiro){
+        return this.corridaHibernate.recuperarPorPassageiro(passageiro);
+    }
+    
+    public List<Corrida> recuperarDisponiveis(Corrida corrida){
+        return this.corridaHibernate.recuperarDisponiveis(corrida);
+    }
+            
+          
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public CorridaHibernate getCorridaHibernate() {
         return corridaHibernate;
     }
@@ -144,6 +183,4 @@ public class CorridaController {
         return "CorridaController{" + "corridaHibernate=" + corridaHibernate + ", cadCorrida=" + cadCorrida + ", selectedCorrida=" + selectedCorrida + '}';
     }
 
- 
-    
 }

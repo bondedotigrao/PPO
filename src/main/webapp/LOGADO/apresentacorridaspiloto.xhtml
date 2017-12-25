@@ -17,24 +17,21 @@
     </h:head>
     <h:body>
        
-        <ui:include src="menupassageirologado.xhtml"/>
-
         
-        <c:if test="${loginControllerPassageiro.passageiroLogado==null}">
+        <ui:include src="menupilotologado.xhtml"/>
+        
+        <c:if test="${loginControllerPiloto.pilotoLogado==null}">
             <script>location.href="indexlogar.xhtml";</script>
         </c:if>
-        
-        
-        
         <p:growl id="gro" showDetail="true"/>
         <h:form id="formApresentaCorr">
-            <p:dataTable id="tableCorrida" var="item" value="#{corridaController.recuperarPorPassageiro(loginControllerPassageiro.passageiroLogado)}"
+            <p:dataTable id="tableCorrida" var="item" value="#{corridaController.recuperarPorPiloto(loginControllerPiloto.pilotoLogado)}"
                          paginator="true" rows="10" rowKey="#{item.id}" selectionMode="single"
                          selection="#{corridaController.selectedCorrida}">
                 
                 
                 <f:facet name="header">
-                    Corridas Cadastradas
+                    Minhas Corridas 
                 </f:facet>
 
                 
@@ -49,12 +46,10 @@
                 </p:column>
                 
 
-                
 
             </p:dataTable>
             <p:commandButton value="visualizar" oncomplete="PF('widDialVisualizaCorrida').show()"
                              update="dialVisualizaCorrida"/>
-            <p:commandButton value="Alterar" action="alteracorridapassageiro.xhtml"/>
            
             <p:dialog id="dialVisualizaCorrida" visible="false" modal="true" header="Detalhes da Corrida"
                       resizable="false" widgetVar="widDialVisualizaCorrida">

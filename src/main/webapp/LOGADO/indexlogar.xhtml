@@ -14,7 +14,7 @@
 
         
         <div align="center" >
-        <p:fieldset id="field" legend="Leva Ali">
+        <p:fieldset id="field" legend="LevAli">
         <div align="center" >
         <p:graphicImage   
       url="https://cdn.shopify.com/s/files/1/0969/9128/products/Spirit_Of_Sports_-_Digital_Art_-_Running_The_Distance_674513fd-46c8-437e-922e-6d78c092d164_grande.jpg?v=1480335905"/>
@@ -22,6 +22,9 @@
         </p:fieldset>
          </div>
                          
-        
+        <p:dialog visible="false">
+            #{loginControllerPassageiro.logout()}
+            #{loginControllerPiloto.logout()}
+        </p:dialog>
     </h:body>
 </html>

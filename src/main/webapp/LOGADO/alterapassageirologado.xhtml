@@ -11,6 +11,12 @@
     </h:head>
     <h:body>
         <ui:include src="menupassageirologado.xhtml"/>
+        
+        <c:if test="${loginControllerPassageiro.passageiroLogado==null}">
+            <script>location.href="indexlogar.xhtml";</script>
+        </c:if>
+        
+        
         <h:form>
             <p:fieldset legend="Alterar Passageiro">
                 <p:panelGrid columns="2">
@@ -38,7 +44,7 @@
                     
                 </p:panelGrid>
                
-                <p:commandButton value="Alterar" action="#{passageiroController.alterar()}"/>
+                <p:commandButton value="Alterar" action="#{passageiroController.alterar}"/>
                 
             </p:fieldset>
         </h:form>

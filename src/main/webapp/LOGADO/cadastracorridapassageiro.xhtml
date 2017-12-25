@@ -14,9 +14,13 @@
 
 
 
-        <ui:include src="menupassageirologado.xhtml"/>
         
-         
+         <ui:include src="menupassageirologado.xhtml"/>
+        
+        <c:if test="${loginControllerPassageiro.passageiroLogado==null}">
+            <script>location.href="indexlogar.xhtml";</script>
+        </c:if>
+        
 
         
         
